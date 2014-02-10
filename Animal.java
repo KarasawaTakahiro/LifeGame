@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ListIterator;
@@ -17,7 +18,8 @@ public class Animal extends Creature {
 		 *
 		 */
 
-		Rectangle animalRect = new Rectangle(getX()+getVx(), getY()+getVy(), getSize(), getSize());
+		Point movep = getMovePoint();
+		Rectangle animalRect = new Rectangle(movep, new Dimension(getSize(), getSize()));
 		for(int i=0; i<plants.length; i++){
 			if(plants[i] == null){
 				break;

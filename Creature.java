@@ -1,16 +1,19 @@
 import java.awt.Point;
+import java.util.Random;
 
 public class Creature extends BasisObject {
 	private int nutrients;  // 養分
-	private int nutrientsLimit = 20;  // 保有可能の養分の限度
+	private int nutrientsLimit = 20;  // 保有可能な養分の限度
 	private int actionFrequency;
-	private int vx;
-	private int vy;
+	private float velocity;  // 進行速度
+	private float direction;  // 進行方向 [rad]
+	private Random rand;
 
 	public Creature(){
 		super();
 		nutrients = 0;
 		nutrientsLimit = 20;
+		rand = new Random();
 	}
 
 	public void update(){
@@ -48,12 +51,12 @@ public class Creature extends BasisObject {
 		nutrientsLimit = limit;
 	}
 
-	public boolean moovable(){
-		if (getElapsedTime() % actionFrequency > 0){
-			return false;
-		}else{
-			return true;
-		}
+	public int getActionFrequency(){
+		return actionFrequency;
+	}
+
+	public void setActionFrequency(int f){
+		actionFrequency = f;
 	}
 
 	public void move() {
@@ -66,55 +69,60 @@ public class Creature extends BasisObject {
 		}
 
 		setPosition(getMovePoint());
-		hitWall();
 
 	}
 
-	public void hitWall(){
-		if (getX() < 0 || MainPanel.WIDTH < getX() +  getSize()) {
-			vx = -vx;
+	public boolean moovable(){
+		/*
+		 * judge to be a hit walls, plants and animals.
+		 */
+		if (getElapsedTime() % actionFrequency > 0){
+			return false;
+		}else{
+			if ((getX() < 0 || MainPanel.WIDTH < getX() +  getSize()) 
+				|| (getY() < 0 || MainPanel.HEIGHT < getY() + getSize())){
+				hitWall();
+				return false;
+			}else{
+				return true;
+			}
 		}
-		if (getY() < 0 || MainPanel.HEIGHT < getY() + getSize()) {
-			vy = -vy;
-		}
-	}
-
-	public void reverse(){
-		vx = -vx;
-		vy = -vy;
 	}
 
 	public Point getMovePoint(){
-		return new Point(getX()+vx, getY()+vy);
+		return new Point((int)(getX() + (float)Math.cos(direction) * velocity), (int)(getY() + (float)Math.sin(direction) * velocity));
 	}
 
-	public int getActionFrequency(){
-		return actionFrequency;
+	public float getVelocity(){
+		return velocity;
 	}
 
-	public void setActionFrequency(int f){
-		actionFrequency = f;
+	public void setVelocity(float v){
+		velocity = v;
 	}
 
-	public void setVelocity(int vx, int vy) {
-		this.setVx(vx);
-		this.setVy(vy);
+	public void reverse(){
+		direction += getRandomDirection();
 	}
 
-	public void setVx(int vx) {
-		this.vx = vx;
+	private float getRandomDirection(){
+		return (float)Math.PI * (rand.nextFloat() * 2 - 1.0f);
 	}
 
-	public void setVy(int vy) {
-		this.vy = vy;
+	public void setRandomDirection(){
+		direction = getRandomDirection();
 	}
 
-	public int getVx(){
-		return this.vx;
+	public void hitWall(){
+		reverse();
 	}
 
-	public int getVy(){
-		return this.vy;
+	public void hitPlant(){
+		reverse();
 	}
+
+	public void hitAnimal(){
+		reverse();
+	}
+
 }
-

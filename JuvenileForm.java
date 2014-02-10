@@ -25,7 +25,7 @@ public class JuvenileForm extends Plant {
 		af.setNutrients(getNutrients() - growthTiming);
 		af.setNutrientsLimit(getNutrientsLimit());
 		af.setActionFrequency(getActionFrequency());
-		af.setVelocity(getVx(), getVy());
+		af.setVelocity(getVelocity());
 		af.setCostTimeToStoreNutrients(getCostTimeToStoreNutrients());
 		return af;
 	}

@@ -3,5 +3,7 @@
 -進行方向を決める
 -決めた進行方向に一定のスピードで向かう
 
+http://www.backlog.jp/git-guide/stepup/stepup2_3.html
+
 ===
 -x方向、y方向の2値でスピードと進行方向を表していた

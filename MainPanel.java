@@ -64,7 +64,7 @@ public class MainPanel extends JPanel implements Runnable {
 			plants[i] = new JuvenileForm();
 			plants[i].setSize((int)((Math.random()+1) * 10));
 			plants[i].setPosition(rand.nextInt(WIDTH), rand.nextInt(HEIGHT));
-			plants[i].setVelocity(0,0);
+			plants[i].setVelocity(0.0f);
 			plantsNum ++;
 		}
 
@@ -84,7 +84,7 @@ public class MainPanel extends JPanel implements Runnable {
 				ty = rand.nextInt(HEIGHT);
 			}while(tx-herbivores[i].getSize()<0||WIDTH<tx+herbivores[i].getSize()||ty-herbivores[i].getSize()<0||HEIGHT<ty+herbivores[i].getSize());
 			herbivores[i].setPosition(tx, ty);
-			herbivores[i].setVelocity((int)((Math.random()) * 10),(int)((Math.random()) * 10));
+			herbivores[i].setVelocity((float)((Math.random()) * 10));
 			herbivoresNum ++;
 		}
 
