@@ -14,6 +14,7 @@ public class Herbivore extends Animal {
 
 	public void update(){
 		super.update();
+		System.out.println(getDirection());
 	}
 
 	public Point getMovePoint(Plant[] plants){
@@ -30,7 +31,6 @@ public class Herbivore extends Animal {
 			return;
 		}
 		setPosition(getMovePoint(plants));
-		hitWall();
 	}
 
 }

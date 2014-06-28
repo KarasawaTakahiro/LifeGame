@@ -14,15 +14,17 @@ public class MainPanel extends JPanel implements Runnable {
 	private final int initialPlantNum = 10;
 	private final int plantsMax = 300;
 
-	private final int initialHerbivoreNum = 20;
-	private final int animalMax = 3;
+	private final int initialHerbivoreNum = 1;
+	private final int animalMax = 20;
 
 	private Random rand;
 	private Thread gameLoop;
 	private Graphics dbg;
 	private Image dbImage = null;
-	public static int WIDTH =  1260;
-	public static int HEIGHT = 700;
+	//public static int WIDTH =  1260;
+	//public static int HEIGHT = 700;
+	public static int WIDTH =  400;
+	public static int HEIGHT = 400;
 	private static final int FPS = 50;
 	private static final long PERIOD = (long)(1.0 / FPS * 1000000000);
 	private static long MAX_STATS_INTERVAL = 1000000000L;

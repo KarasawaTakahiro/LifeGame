@@ -90,6 +90,9 @@ public class Creature extends BasisObject {
 	}
 
 	public Point getMovePoint(){
+		/*
+		 * 移動先の座標を計算する
+		 */
 		return new Point((int)(getX() + (float)Math.cos(direction) * velocity), (int)(getY() + (float)Math.sin(direction) * velocity));
 	}
 
@@ -114,15 +117,22 @@ public class Creature extends BasisObject {
 	}
 
 	public void hitWall(){
+		System.out.println("hitWall");
 		reverse();
 	}
 
 	public void hitPlant(){
+		System.out.println("hitPlant");
 		reverse();
 	}
 
 	public void hitAnimal(){
 		reverse();
+	}
+
+	// debug
+	public float getDirection(){
+		return direction;
 	}
 
 }
